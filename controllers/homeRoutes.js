@@ -1,9 +1,24 @@
-const express = require('express');
-const router = express.Router();
-const path = require('path');
+const sequelize = require('../config/connection');
+const { Post, User, Comment} = require('../models');
+const router = require('express').Router();
+
+
 
 router.get('/', async (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/index.html'))
+    try {
+        await res.render('./public/index.html')
+    } catch (err) {
+        res.status(500).json(err)
+    }
 })
 
+
+
+
+
+
+
+
 module.exports = router;
+
+
