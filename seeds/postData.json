@@ -1,1 +1,15 @@
-// Figure out insertion stuff here
+[
+    {   
+    "title": "Here comes Bard, Google's version of ChatGPT",
+    "content": "The new AI chat bot is available to 'trusted testers' for now and will be released to the public in the “coming weeks."
+},  
+{
+    "title": "Where will all the laid-off tech workers go?",
+    "content": "The bright side to all these terrible tech layoffs"
+},
+
+{
+    "title": "GoodRx made money off your health data. The FTC is making it pay.",
+    "content": "More like BadRx"
+}
+]
