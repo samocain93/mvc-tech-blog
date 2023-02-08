@@ -1,0 +1,13 @@
+{{#if posts.length}}
+  <section class="post">
+    <div class="container container-fluid">
+      <h2 class="h2">Your Posts</h2>
+      {{#each posts as |post|}}{{/each}}
+
+    </div>
+  </section>
+
+{{/if}}
+
+
+<button class="btn btn-light" type="submit" <a class="link" href="/dashboard/new">Create Post</a></button>
