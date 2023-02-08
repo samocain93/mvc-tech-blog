@@ -39,7 +39,7 @@ router.get('/', async (req, res) => {
             'id',
             'title',
             'content',
-            'date_created',
+            'created_at',
         ],
         include: [{
             model: Comment,
@@ -53,7 +53,7 @@ router.get('/', async (req, res) => {
     .then(postData => {
         const posts = postData.map(post => post.get({ plain: true}));
         console.log(posts);
-        res.render('homepage', { possts, loggedIn: req.session.loggedIn})
+        res.render('homepage', { posts, loggedIn: req.session.loggedIn})
     })
     .catch(err => {
         console.log(err);

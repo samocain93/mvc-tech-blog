@@ -19,11 +19,7 @@ Post.init(
         content: {
             type: DataTypes.TEXT,
         },
-        date_created: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW
-        },
+
         user_id: {
             type: DataTypes.INTEGER,
             references: {
@@ -37,7 +33,7 @@ Post.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'post'
+        modelName: 'post',
 
     }
 )
