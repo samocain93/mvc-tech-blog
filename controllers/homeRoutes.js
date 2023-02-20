@@ -1,35 +1,8 @@
 
 const { Post, User, Comment} = require('../models');
 const router = require('express').Router();
-const withAuth = require('../utils/auth')
-
-
-// Working route to render public index html page for testing 
-
-// router.get('/', async (req, res) => {
-//     try {
-//         await res.render('./public/index.html')
-//     } catch (err) {
-//         res.status(500).json(err)
-//     }
-// })
-
-
-// Working route to render all posts to page
-
-// router.get('/', (req, res) => {
-//     Post.findAll({
-//         include: [
-//             {
-//                 model: User
-//             }
-//         ]
-//     }).then((posts) => {
-//         console.log(posts);
-//         posts = posts.map((post) => post.get({plain: true}));
-//         res.render('homepage', { posts })
-//     })
-// })
+const sequelize = require('../config/connection');
+// const withAuth = require('../utils/auth');
 
 
 // Get route for finding all Posts and rendering to page
@@ -43,7 +16,7 @@ router.get('/', async (req, res) => {
         ],
         include: [{
             model: Comment,
-            attributes: ['id', 'text', 'user_id', "post_id" ],
+            attributes: ['id', 'text', 'user_id', "post_id", 'created_at' ],
             include: {
                 model: User,
                 attributes: ['username']
@@ -76,6 +49,12 @@ router.get('/login', (req, res) => {
 });
 
 
+// New user signup route
+router.get('/signup', (req, res) => {
+    res.render('signup');
+})
+
+
 
 
 // Route to view single post 
@@ -90,7 +69,7 @@ router.get('/post/:id', (req, res) => {
             'id',
             'title',
             'content',
-            'date_created',
+            'created_at',
         ],
         include: [{
             model: Comment,
@@ -117,15 +96,6 @@ router.get('/post/:id', (req, res) => {
     })
  
 })
-
-
-
-
-
-
-
-
-
 
 
 module.exports = router;
