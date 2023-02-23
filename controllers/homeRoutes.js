@@ -78,7 +78,11 @@ router.get('/post/:id', (req, res) => {
                 model: User,
                 attributes: ['username']
             }
-        }]
+        },
+    {
+        model: User,
+        attributes: ['username']
+    }]
     })
     .then(postData => {
         if (!postData) {
@@ -87,7 +91,7 @@ router.get('/post/:id', (req, res) => {
         }
         const post = postData.get({ plain: true });
         console.log(post);
-        res.render('post', { post, loggedIn: req.session.loggedIn})
+        res.render('single-post', { post, loggedIn: req.session.loggedIn})
     })
 
     .catch(err => {
