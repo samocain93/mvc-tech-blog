@@ -1,4 +1,4 @@
-const { Post } = require("../models");
+const { Post } = require('../models');
 
 const postData = [
   {
@@ -8,14 +8,14 @@ const postData = [
     user_id: 1,
   },
   {
-    title: "Where will all the laid-off tech workers go?",
-    content: "The bright side to all these terrible tech layoffs",
+    title: 'Where will all the laid-off tech workers go?',
+    content: 'The bright side to all these terrible tech layoffs',
     user_id: 2,
   },
 
   {
-    title: "GoodRx made money off your health data. The FTC is making it pay.",
-    content: "More like BadRx",
+    title: 'GoodRx made money off your health data. The FTC is making it pay.',
+    content: 'More like BadRx',
     user_id: 3,
   },
 ];
