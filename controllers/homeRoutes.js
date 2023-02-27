@@ -4,7 +4,7 @@ const sequelize = require('../config/connection');
 // const withAuth = require('../utils/auth');
 
 // Get route for finding all Posts and rendering to page
-router.get('/', async (req, res) => {
+/* router.get('/', async (req, res) => {
   const postData = await Post.findAll({
     attributes: ['id', 'title', 'content', 'created_at'],
     include: [
@@ -28,6 +28,41 @@ router.get('/', async (req, res) => {
       res.status(500).json(err);
     });
 });
+ */
+
+
+router.get('/', async (req, res) => {
+  try {
+    // Get all projects and JOIN with user data
+    const postData = await Post.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+        {
+          model: Comment,
+          attributes: ['id', 'text', 'post_id', 'user_id', 'created_at']
+        }
+      ],
+    });
+
+    // Serialize data so the template can read it
+    const posts = postData.map((post) => post.get({ plain: true }));
+
+    // Pass serialized data and session flag into template
+    res.render('homepage', { 
+      posts, 
+      logged_in: req.session.loggedIn
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+
+
 
 // LOGIN
 // If login is clicked, redirect to login
