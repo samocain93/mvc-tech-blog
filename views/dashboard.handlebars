@@ -1,12 +1,21 @@
 {{#if posts.length}}
-  <section class="post">
-    <div class="container container-fluid">
-      <h2 class="h2">Your Posts</h2>
-      {{#each posts as |post|}}{{/each}}
+{{#each posts as |post|}}
 
+<section class="dashboard-content">
+  <h2 class="h2">Your Posts</h2>
+    <a href="/posts/{{post.id}}">
+    <div class="post-title">
+        <span>{{post.title}}</span>
     </div>
-  </section>
-
+    </a>
+     <div class="post-content">
+        <span>{{post.content}}</span>
+    </div>
+    <div class="db-date">
+        <span>Posted on: {{format_date post.created_at}}</span>
+    </div>
+</section>
+{{/each}}
 {{/if}}
 
 

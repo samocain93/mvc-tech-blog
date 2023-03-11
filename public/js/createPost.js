@@ -22,4 +22,6 @@ const newFormHandler = async (event) => {
   }
 };
 
-document.getElementById('add-post-form').addEventListener('submit', newFormHandler);
+document
+  .getElementById('add-post-form')
+  .addEventListener('submit', newFormHandler);
