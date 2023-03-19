@@ -1,14 +1,20 @@
 {{> post}}
 
 {{#if loggedIn}}
-    <div class="card">
-        <h3 class="card-header"></h3>
-        <form action="" class="card-body comment-form" id="comment-form">
-            <label for="comment-form" class="form-label">Leave a comment</label>
-            <input type="text" id="comment" name="comment-text" class="form-input">
-            <button type="submit" class="btn">Submit comment</button>
+<div class="container-fluid">
+    <div class="card m-3 d-flex text-center">
+        <h4 class="card-header">Leave a comment</h4>
+        <div class="card-body container-fluid">
+             <form action="" class="card-body comment-form" id="comment-form">
+            <label for="comment-form" class="form-label"></label>
+            {{!-- <input type="text" id="comment" name="comment-text" class="form-input"> --}}
+            <textarea class="text-align-center" name="textarea" id="textarea" cols="30" rows="3" placeholder="Leave your comment here"></textarea>
+            <button type="submit" class="btn btn-block">Submit comment</button>
         </form>
+        </div>
     </div>
+</div>
+    
     {{/if}}
 
     {{> comment post.comments}}
