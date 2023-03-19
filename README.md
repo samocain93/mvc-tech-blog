@@ -1,20 +1,26 @@
 # MVC Tech Blog
-A CMS-style tech blog website using the MVC model.
 
 ## Description
 
-This application will allow users to create and save notes on a webpage, providing a title and description along with each note. If the user decides to delete a note, they will have the option to delete a created note and remove it from their stored list.
+"The Heck With Tech" is an up-to-date blog site for all things tech and web development. This site allows developers to share blog posts, as well as view and comment on other blog posts.
 
 ### User Story
+---
 
-- As a small business owner, I want to be able to write and save notes so that I can organize and keep track of tasks I need to complete.
+AS A developer who writes about tech
+
+I WANT a CMS-style blog site
+
+SO THAT I can publish articles, blog posts, and my thoughts and opinions
 
 ### What I Learned
-- Continued practice using Node.js and new Node packages
-- Using the Express framework for the first time to create routes for a server
-- Deploying a webpage to be hosted using Heroku
-- Nodemon server monitoring
-- Creating routes to serve files and information to the client
+---
+- Working heavily with Express.js and routing
+- Utilizing applications like Postman and Insomnia to test routes
+- Setting up a project using the MVC (Model-View-Controller) model
+- Deploying an application using Heroku
+- Using Handlebars.js for template structure in a project
+- Continued database usage with MySQL and Sequelize
 
 
 ## Table of Contents
