@@ -4,9 +4,9 @@ const withAuth = require('../../utils/auth');
 const sequelize = require('../../config/connection');
 
 router.get('/', (req, res) => {
-  console.log('========');
   Post.findAll({
-    attributes: ['id', 'title', 'content', 'created_at'],
+    attributes: ['id', 'content', 'title', 'created_at'],
+    order: [['created_at', 'DESC']],
     include: [
       {
         model: User,
@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
       },
     ],
   })
-    .then((dbPostData) => res.json(dbPostData.reverse()))
+    .then((postData) => res.json(postData.reverse()))
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
@@ -99,7 +99,9 @@ router.put('/:id', withAuth, async (req, res) => {
 });
 
 router.delete('/:id', withAuth, async (req, res) => {
-  try {
+  console.log(req.params.id)
+  console.log(req.session.user_id)
+  //try {
     const postData = await Post.destroy({
       where: {
         id: req.params.id,
@@ -113,9 +115,9 @@ router.delete('/:id', withAuth, async (req, res) => {
     }
 
     res.status(200).json(postData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  // } catch (err) {
+  //   res.status(500).json(err);
+  // }
 });
 
 module.exports = router;

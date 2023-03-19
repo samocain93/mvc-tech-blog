@@ -1,0 +1,1 @@
+const title = document.querySelector('#post-title').value.trim();

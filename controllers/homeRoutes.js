@@ -30,7 +30,6 @@ const sequelize = require('../config/connection');
 });
  */
 
-
 router.get('/', async (req, res) => {
   try {
     // Get all projects and JOIN with user data
@@ -42,27 +41,23 @@ router.get('/', async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ['id', 'text', 'post_id', 'user_id', 'created_at']
-        }
+          attributes: ['id', 'text', 'post_id', 'user_id', 'created_at'],
+        },
       ],
     });
 
     // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
-
+    console.log(posts);
     // Pass serialized data and session flag into template
-    res.render('homepage', { 
-      posts, 
-      logged_in: req.session.loggedIn
+    res.render('homepage', {
+      posts,
+      logged_in: req.session.loggedIn,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
-
-
-
 
 // LOGIN
 // If login is clicked, redirect to login
@@ -84,7 +79,7 @@ router.get('/signup', (req, res) => {
 // Route to view single post
 // This will be when a user clicks on a post on the home page
 
-router.get('/post/:id', (req, res) => {
+router.get('/posts/:id', (req, res) => {
   Post.findOne({
     where: {
       id: req.params.id,
@@ -92,16 +87,15 @@ router.get('/post/:id', (req, res) => {
     attributes: ['id', 'title', 'content', 'created_at'],
     include: [
       {
-        model: Comment,
-        attributes: ['id', 'text', 'user_id', 'post_id', 'created_at'],
-        include: {
-          model: User,
-          attributes: ['username'],
-        },
+        model: User,
       },
       {
-        model: User,
-        attributes: ['username'],
+        model: Comment,
+        include: [
+          {
+            model: User,
+          },
+        ],
       },
     ],
   })
@@ -120,5 +114,36 @@ router.get('/post/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
+
+router.get('/comment/:id', (req, res) => {
+  Post.findOne({
+    where: {
+      id: req.params.id,
+    },
+    include: [
+      {
+        model: User,
+      },
+      {
+        model: Comment,
+        include: [
+          {
+            model: User,
+          },
+        ],
+      },
+    ],
+  }).then((postData) => {
+    if (!postData) {
+      res.status(404).json({ message: 'No post found with this id' });
+      return;
+    }
+    const post = postData.get({ plain: true });
+    res.render('comment', { post, loggedIn: req.session.loggedIn });
+  });
+});
+
+// Route to edit a post
+// This will be when a user clicks on a post on the home page
 
 module.exports = router;
