@@ -1,0 +1,20 @@
+<div class='card m-5' id='edit-post'>
+  <div class='card-header'>
+    <input id='post-title' class='card-title' value='{{post.title}}' />
+    <h6 class='card-subtitle mb-2'>Posted by
+      {{post.user_id}}
+      on
+      {{format_date post.created_at}}</h6>
+  </div>
+  <div class='card-body'>
+    <textarea id='post-content' class='card-text'>{{post.content}}</textarea>
+  </div>
+  <button class='delete-btn btn btn-block btn-dark'>Delete Post</button>
+  <button class='edit-btn btn btn-block btn-dark'>Edit Post</button>
+
+</div>
+
+{{#if loggedIn}}
+  <script src='/js/deletePost.js'></script>
+  <script src='/js/editPost.js'></script>
+{{/if}}
